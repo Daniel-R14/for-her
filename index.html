@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        font-family: 'Segoe UI', sans-serif;
+        text-align: center;
+        overflow: hidden;
+        color: white;
+    }
+
+    .container {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+    }
+
+    .yes {
+        background-color: #ff2e63;
+        color: white;
+    }
+
+    .yes:hover {
+        transform: scale(1.1);
+    }
+
+    .no {
+        background-color: white;
+        color: #ff2e63;
+        position: relative;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        bottom: -10px;
+        font-size: 20px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(0); }
+        to { transform: translateY(-100vh); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="content">
+    <h1>Hey ❤️</h1>
+    <button onclick="next()">Click Me 😊</button>
+</div>
+
+<script>
+function next() {
+    document.getElementById("content").innerHTML = `
+        <h1>Would you like to date me? 🥺💕</h1>
+        <button class="yes" onclick="yes()">Yes 😍</button>
+        <button class="no" onmouseover="moveButton(this)">No 😅</button>
+    `;
+}
+
+function yes() {
+    document.getElementById("content").innerHTML = `
+        <h1>Yayyyy!!! 🥰💖</h1>
+        <p>You just made me the happiest guy alive ❤️</p>
+    `;
+}
+
+function moveButton(button) {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+
+/* Generate floating hearts */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 500);
+</script>
+
+</body>
+</html>
